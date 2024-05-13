@@ -7,6 +7,7 @@ const initState = {
   loading: false,
   menus: [],
   token: null,
+  errorMess: "",
 };
 export const getDataReducer = (state = initState, action) => {
   switch (action.type) {
@@ -15,7 +16,7 @@ export const getDataReducer = (state = initState, action) => {
     case GET_TOKEN_SUCCESS:
       return { ...state, loading: false, token: action.payload };
     case GET_TOKEN_FAILURE:
-      return { ...state, loading: false };
+      return { ...state, loading: false, errorMess: action.payload };
 
     default:
       break;

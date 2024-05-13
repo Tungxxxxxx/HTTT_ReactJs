@@ -3,6 +3,7 @@ import {
   GET_TOKEN_SUCCESS,
   GET_TOKEN_FAILURE,
 } from "../../constants/Action";
+import { GET_TOKEN } from "../../constants/API";
 import axios from "axios";
 export const fetchGetMenuByUserRequest = () => {
   return { type: GET_TOKEN_REQUEST };
@@ -15,6 +16,13 @@ export const ffetchGetMenuByUserFailure = (error) => {
 };
 // trả về 1 dispatch
 export const fetchGetMenuByUser = (user) => {
+  var res = axios({
+    method: "post",
+    url: GET_TOKEN,
+    data: {
+      username: "TUNGPT",
+    },
+  });
   return (dispatch) => {
     dispatch();
   };
