@@ -1,4 +1,4 @@
-import store from "../redux/store/Store";
+import { store } from "../redux/store/Store";
 import "../styles/App.css";
 import Home from "./Home";
 import { Provider } from "react-redux";

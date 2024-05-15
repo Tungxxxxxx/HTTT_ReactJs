@@ -1,7 +1,8 @@
-import { createStore, combineReducers } from "redux";
-import { getDataReducer } from "../reducers/dataReducer";
-import middleware from "../middleware/Middleware";
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../slices/userSlice";
 
-const reducers = combineReducers({ data: getDataReducer });
-const store = createStore(reducers, middleware);
-export default store;
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});

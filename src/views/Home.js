@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchToken } from "../redux/slices/userSlice";
 function Home() {
-  const [username, setUser] = useState();
-  const [password, setPass] = useState();
-  const handleOnchangeUsername = (event) => {
+  const [username, setUser] = useState("");
+  const [password, setPass] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  useEffect(() => {
     console.log(username);
+  }, [username]);
+  const handelLogin = () => {
+    try {
+      var user = { username: "TUNGPT", password: "Tungha123" };
+      console.log(fetchToken(user));
+      dispatch(fetchToken(user));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleOnchangeUsername = (event) => {
     setUser(event.target.value);
   };
   const handleOnchangePassword = (event) => {
-    console.log(password);
     setPass(event.target.value);
   };
   return (
@@ -18,7 +32,7 @@ function Home() {
           id="username"
           name="username"
           value={username}
-          onChange={(event) => handleOnchangeUsername(event)}
+          onChange={handleOnchangeUsername}
         />
       </div>
       <div>
@@ -28,10 +42,13 @@ function Home() {
           id="password"
           name="password"
           value={password}
-          onChange={(event) => handleOnchangePassword(event)}
+          onChange={handleOnchangePassword}
         />
       </div>
-      <button>Đăng nhập</button>
+      <button onClick={handelLogin}>Đăng nhập</button>
+      <div>
+        <label>{token}</label>
+      </div>
     </form>
   );
 }

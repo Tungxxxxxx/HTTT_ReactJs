@@ -8,12 +8,14 @@ export const fetchToken = createAsyncThunk("users/fetchToken", async (user) => {
     const response = await axios.post(GET_TOKEN, user);
     return response.data;
   } catch (error) {
+    console.log(error);
     return error;
   }
 });
 const initialState = {
   token: null,
-  loading: false,
+  isLoading: false,
+  isError: false,
 };
 
 export const userSlice = createSlice({
@@ -23,18 +25,26 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchToken.pending, (state, action) => {
+      console.log("pending");
       // Add user to the state array
-      state.loading.push(true);
+      state.isLoading = true;
+      state.isError = false;
     });
     builder.addCase(fetchToken.fulfilled, (state, action) => {
+      console.log("pending");
       // Add user to the state array
-      state.loading.push(false);
-      state.token.push(action.payload);
+      state.isLoading = false;
+      state.token = action.payload;
+      state.isError = false;
     });
     builder.addCase(fetchToken.rejected, (state, action) => {
+      console.log("rejected");
       // Add user to the state array
-      state.loading.push(false);
-      state.error.push(action.payload);
+      state.isLoading = false;
+      state.isError = true;
+      state.token = action.payload;
     });
   },
 });
+
+export default userSlice.reducer;
