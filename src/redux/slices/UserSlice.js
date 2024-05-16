@@ -3,10 +3,10 @@ import axios from "axios";
 import { GET_TOKEN } from "../../constants/API";
 
 // First, create the thunk
-export const fetchToken = createAsyncThunk("users/fetchToken", async (user) => {
+export const fetchToken = createAsyncThunk("users/fetchToken", async () => {
   try {
-    const response = await axios.post(GET_TOKEN, user);
-    return response.data;
+    const response = await axios.get(GET_TOKEN);
+    return response.data[0].title;
   } catch (error) {
     console.log(error);
     return error;
@@ -31,7 +31,7 @@ export const userSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(fetchToken.fulfilled, (state, action) => {
-      console.log("pending");
+      console.log("fulfilled");
       // Add user to the state array
       state.isLoading = false;
       state.token = action.payload;

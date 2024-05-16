@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchToken } from "../redux/slices/userSlice";
+import axios from "axios";
 function Home() {
+  console.log("rếtttttttttttttttttttttttt");
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
-  useEffect(() => {
-    console.log(username);
-  }, [username]);
-  const handelLogin = () => {
-    try {
-      var user = { username: "TUNGPT", password: "Tungha123" };
-      console.log(fetchToken(user));
-      dispatch(fetchToken(user));
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogin = () => {
+    var user = {
+      message: "https://images.dog.ceo/breeds/hound-english/n02089973_529.jpg",
+      status: "success",
+    };
+    dispatch(fetchToken(user));
+  };
+  const options = {
+    method: "GET",
+    url: "https://covid-193.p.rapidapi.com/countries",
+    headers: {
+      "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
+      "X-RapidAPI-Host": "covid-193.p.rapidapi.com",
+    },
+  };
+
+  const handleCheckApi = () => {
+    dispatch(fetchToken());
   };
   const handleOnchangeUsername = (event) => {
     setUser(event.target.value);
@@ -25,7 +34,7 @@ function Home() {
     setPass(event.target.value);
   };
   return (
-    <form>
+    <div>
       <div>
         <label>Tài khoản</label>
         <input
@@ -45,11 +54,11 @@ function Home() {
           onChange={handleOnchangePassword}
         />
       </div>
-      <button onClick={handelLogin}>Đăng nhập</button>
+      <button onClick={handleCheckApi}>Đăng nhập</button>
       <div>
         <label>{token}</label>
       </div>
-    </form>
+    </div>
   );
 }
 
