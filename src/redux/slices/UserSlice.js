@@ -3,10 +3,15 @@ import axios from "axios";
 import { GET_TOKEN } from "../../constants/API";
 
 // First, create the thunk
-export const fetchToken = createAsyncThunk("users/fetchToken", async () => {
+export const fetchToken = createAsyncThunk("users/fetchToken", async (user) => {
   try {
-    const response = await axios.get(GET_TOKEN);
-    return response.data[0].title;
+    const response = await axios.post(GET_TOKEN, user, {
+      headers: {
+        // bạn có thể thêm các headers cần thiết tại đây, ví dụ:
+        "Content-Type": "application/json",
+      },
+    });
+    return response.token;
   } catch (error) {
     console.log(error);
     return error;
