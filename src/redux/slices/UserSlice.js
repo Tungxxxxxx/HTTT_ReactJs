@@ -7,8 +7,8 @@ export const fetchToken = createAsyncThunk("users/fetchToken", async (user) => {
   try {
     const response = await axios.post(GET_TOKEN, user, {
       headers: {
-        // bạn có thể thêm các headers cần thiết tại đây, ví dụ:
-        "Content-Type": "application/json",
+        //"Content-Type": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
       },
     });
     return response.token;
@@ -37,6 +37,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(fetchToken.fulfilled, (state, action) => {
       console.log("fulfilled");
+      console.log(action);
       // Add user to the state array
       state.isLoading = false;
       state.token = action.payload;

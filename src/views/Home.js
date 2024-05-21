@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchToken } from "../redux/slices/userSlice";
-import axios from "axios";
 function Home() {
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
@@ -12,12 +11,10 @@ function Home() {
       username: username,
       password: password,
     };
+    console.log(user);
     dispatch(fetchToken(user));
   };
 
-  const handleCheckApi = () => {
-    dispatch(fetchToken());
-  };
   const handleOnchangeUsername = (event) => {
     setUser(event.target.value);
   };
