@@ -11,7 +11,8 @@ export const fetchToken = createAsyncThunk("users/fetchToken", async (user) => {
         // "Content-Type": "application/x-www-form-urlencoded",
       },
     });
-    return response.token;
+    console.log("response>>>>>>>>>>>>>>>>>", response);
+    return response.data.access_token;
   } catch (error) {
     console.log(error);
     return error;
@@ -28,24 +29,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
+    // Thêm reducers cho các loại action bổ sung ở đây, và xử lý trạng thái loading nếu cần
     builder.addCase(fetchToken.pending, (state, action) => {
-      console.log("pending");
-      // Add user to the state array
       state.isLoading = true;
       state.isError = false;
     });
     builder.addCase(fetchToken.fulfilled, (state, action) => {
-      console.log("fulfilled");
-      console.log(action);
-      // Add user to the state array
       state.isLoading = false;
       state.token = action.payload;
       state.isError = false;
     });
     builder.addCase(fetchToken.rejected, (state, action) => {
-      console.log("rejected");
-      // Add user to the state array
       state.isLoading = false;
       state.isError = true;
       state.token = action.payload;
