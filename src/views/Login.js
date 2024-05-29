@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchToken } from "../redux/slices/userSlice";
+import { fetchToken } from "../redux/slices/authSlice";
 function Login() {
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");

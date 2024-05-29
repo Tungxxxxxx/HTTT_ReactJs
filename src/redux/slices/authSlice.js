@@ -24,10 +24,14 @@ const initialState = {
   isError: false,
 };
 
-export const userSlice = createSlice({
+export const authSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.token = null;
+    },
+  },
   extraReducers: (builder) => {
     // Thêm reducers cho các loại action bổ sung ở đây, và xử lý trạng thái loading nếu cần
     builder.addCase(fetchToken.pending, (state, action) => {
@@ -46,5 +50,5 @@ export const userSlice = createSlice({
     });
   },
 });
-
-export default userSlice.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

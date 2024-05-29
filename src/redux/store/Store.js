@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "../slices/userSlice";
+import authReducer from "../slices/authSlice";
+import checkTokenExpirationMiddleware from "../middlewares/checkTokenExpirationMiddleware";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    user: userReducer,
+    auth: authReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(checkTokenExpirationMiddleware),
 });
+export default store;
