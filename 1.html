@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PotentiallyError - H&#243;a đơn điện tử VNPT</title>
+    <link href="/Content/EInvoice/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="/Content/css/style.css" rel="stylesheet" />
+    <link
+      href="/Content/style?v=_jVo_Z76NV3jJUVpOVllHAta3ls3V9FEN7XKSslgClY1"
+      rel="stylesheet"
+    />
+
+    <script src="/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+
+    <script src="/bundles/jquery?v=FLnTWc27wlIQZNiRETJ4IXoqGg3IVnJVukz3lT61lbU1"></script>
+
+    <script src="/Content/js/bootstrap.js"></script>
+    <link href="/Content/css/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="/Content/js/jquery-ui-1.8.12.custom.min.js"></script>
+
+    <style>
+      .bootbox-alert .modal-header {
+        background: #0066b3;
+        color: #fff;
+        padding: 5px;
+      }
+
+      .ui-dialog-titlebar {
+        background: #0066b3;
+        color: #fff;
+      }
+
+      .item_selected {
+        background-color: #cedde8 !important;
+      }
+
+      .jconfirm-buttons .btn-flat {
+        border-radius: 0px !important;
+      }
+
+      .jconfirm .jconfirm-box .jconfirm-buttons button {
+        padding: 3px 12px !important;
+      }
+
+      .jconfirm.jconfirm-white .jconfirm-box,
+      .jconfirm.jconfirm-light .jconfirm-box {
+        border-radius: 0px;
+      }
+
+      .jconfirm .jconfirm-box div.jconfirm-title-c {
+        background: #0066b3;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        color: #fff;
+        font-size: 15px;
+      }
+
+      .jconfirm .jconfirm-box div.jconfirm-content-pane {
+        margin-top: 30px;
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+      }
+
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .contentFix {
+        padding-top: 0px;
+        margin-top: -15px;
+      }
+
+      .contentFix {
+        min-height: 250px;
+        padding: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .contentFix {
+        color: black;
+      }
+
+      .contentFix .row .row {
+        padding-top: 0;
+      }
+
+      a.imgvi {
+        background: url(/Content/Images/vi.png) no-repeat top left;
+        display: block;
+        width: 25px;
+        height: 25px;
+        text-indent: -9999px;
+        float: left;
+        margin-left: 10px;
+      }
+
+      a.imgen {
+        background: url(/Content/Images/en.png) no-repeat top left;
+        display: block;
+        width: 25px;
+        height: 25px;
+        text-indent: -9999px;
+        float: left;
+        margin-left: 10px;
+      }
+
+      /*CSS VNPT Custom*/
+      .navbar-header button {
+        box-shadow: none !important;
+      }
+
+      .navbar-collapse .dropdown {
+        float: inherit;
+      }
+
+      .navbar-custom-menu {
+        display: none !important;
+      }
+
+      @media screen and (min-width: 768px) {
+        .dropdown:hover .dropdown-menu {
+          display: block;
+        }
+      }
+
+      @media (max-width: 767px) {
+        #btn-create,
+        .float-none {
+          float: none !important;
+        }
+
+        #header-desktop-info {
+          display: none !important;
+        }
+
+        #header-desktop img {
+          width: 100% !important;
+        }
+
+        .navbar-nav .show .dropdown-menu {
+          position: static;
+          float: none;
+          width: auto;
+          margin-top: 0;
+          background-color: transparent;
+          border: 0;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+
+        .navbar-nav .dropdown-menu .divider {
+          display: none;
+        }
+
+        .navbar-nav .dropdown-menu > li > a {
+          padding: 5px 20px;
+        }
+
+        .navbar-custom-menu {
+          display: block !important;
+        }
+
+        nav.navbar-static-top .container {
+          width: 100% !important;
+        }
+
+        .navbar-custom-menu .nav > li > a {
+          padding-left: 0px !important;
+          padding-right: 10px !important;
+        }
+
+        .navbar-nav > .user-menu > .dropdown-menu > li.header > a {
+          color: #444444;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 10px;
+        }
+
+        .navbar-nav > .user-menu > .dropdown-menu > li.header > a:hover {
+          background: #f4f4f4;
+          text-decoration: none;
+        }
+
+        .navbar-custom-menu img {
+          height: 13px !important;
+          width: 19px !important;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .navbar-nav > .user-menu {
+          white-space: nowrap;
+          max-width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .navbar-nav > .user-menu > a {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .navbar-collapse.pull-left + .navbar-custom-menu {
+          top: 4px !important;
+        }
+      }
+
+      .modal-header {
+        background: #0066b3;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 10px;
+      }
+
+      #vnpt-noti-system-demo {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        text-transform: uppercase;
+        border-right: 5px solid #c87f0a;
+        float: left;
+        width: 100%;
+      }
+
+      #vnpt-noti-system-demo h5 {
+        font-weight: bold;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      /*END CSS VNPT Custom*/
+    </style>
+  </head>
+
+  <body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+      <header class="main-header">
+        <div class="container" id="header-desktop">
+          <img src="/Content/Images/logo_hd_01.png" />
+          <div
+            id="header-desktop-info"
+            style="float: right; padding-top: 5px; display: -webkit-inline-box"
+          >
+            <div style="padding-right: 1em"></div>
+            <div style="padding-right: 1em"></div>
+            <div>
+              <a style="color: #337ab7" href="/Account/Logout">Đăng xuất</a>
+            </div>
+            <div>
+              <a
+                href="javascript:void(0)"
+                onclick="changeLanguage('vi')"
+                class="imgvi"
+              ></a>
+              <a
+                href="javascript:void(0)"
+                onclick="changeLanguage('en')"
+                class="imgen"
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar-collapse"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse pull-left"
+              id="navbar-collapse"
+            >
+              <!-- /.navbar-collapse -->
+            </div>
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <li class="dropdown tasks-menu">
+                  <a href="javascript:void(0)" onclick="changeLanguage('vi')">
+                    <img src="/Content/Images/vi.png" />
+                  </a>
+                </li>
+                <li class="dropdown tasks-menu">
+                  <a href="javascript:void(0)" onclick="changeLanguage('en')">
+                    <img src="/Content/Images/en.png" />
+                  </a>
+                </li>
+                <li class="dropdown user user-menu"></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- /.container-fluid -->
+        </nav>
+      </header>
+      <div class="content-wrapper" style="min-height: 87%">
+        <div class="container">
+          <!-- Main content -->
+          <section class="contentFix">
+            <div class="row">
+              <h2>C&#243; lỗi xảy ra -</h2>
+              <h2>
+                C&#243; lỗi xảy ra. Vui l&#242;ng li&#234;n hệ quản trị hệ
+                thống!
+              </h2>
+            </div>
+
+            <div class="clear"></div>
+            <div
+              class="modal fade in"
+              id="DuplicateInvModalLong"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="DuplicateInvModalLongTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4
+                      class="modal-title"
+                      id="DuplicateInvModalLongTitle"
+                      style="font-weight: bold; height: 0; text-align: center"
+                    >
+                      Tạo bản sao h&#243;a đơn
+                    </h4>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="DuplicateInvForm">
+                      <input
+                        name="__RequestVerificationToken"
+                        type="hidden"
+                        value="cRJ7mGX6J_sI8XcD7I1W9kgjOJ3Unhhiegexu7L47OAPvY9t8LBrcF_C_ohyr6RX_ZXAuiNrxB5c89hwZ1Yzk041U9kKi1LoUEUsSNh1XM81"
+                      />
+                      <div class="panel-body form-horizontal">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="col-md-3 control-label"
+                              >Mẫu số:</label
+                            >
+                            <div class="col-md-8">
+                              <select
+                                class="form-control dropdownlist required"
+                                id="DuplicatePattern"
+                                name="DuplicatePattern"
+                                onchange="getDuplicateSerial()"
+                              >
+                                <option value="">--Chọn mẫu số--</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label"
+                              >K&#253; hiệu:</label
+                            >
+                            <div class="col-md-8">
+                              <select
+                                class="form-control dropdownlist required"
+                                id="DuplicateSerial"
+                                name="DuplicateSerial"
+                              >
+                                <option value="">--Chọn k&#253; hiệu--</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label"
+                              >Số bản sao:</label
+                            >
+                            <div class="col-md-8">
+                              <input
+                                class="form-control required"
+                                data-val="true"
+                                data-val-number="The field DuplicateCount must be a number."
+                                data-val-required="The DuplicateCount field is required."
+                                id="DuplicateCount"
+                                maxlength="2"
+                                name="DuplicateCount"
+                                type="text"
+                                value="0"
+                              />
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3"></label>
+                            <div class="col-md-8">
+                              <label
+                                id="lblErrorMessageDuplicateInvoice"
+                                class="validation-summary-errors"
+                              ></label>
+                            </div>
+                          </div>
+                          <input
+                            id="OldPattern"
+                            name="OldPattern"
+                            type="hidden"
+                            value=""
+                          />
+                          <input
+                            id="DuplicateInvoiceId"
+                            name="DuplicateInvoiceId"
+                            type="hidden"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div class="box-footer">
+                        <a
+                          class="btn btn-default btn-flat"
+                          onclick="return closeModel()"
+                          ><i
+                            class="glyphicon glyphicon-arrow-left margin-r-5"
+                          ></i
+                          >Quay lại</a
+                        >
+                        <button
+                          type="button"
+                          onclick="return CreateDuplicateInv()"
+                          class="btn btn-primary btn-flat"
+                        >
+                          <i class="glyphicon glyphicon-plus"></i>Tạo bản sao
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <style>
+              .error {
+                color: red;
+              }
+
+              .duplicateIndex,
+              .bootbox {
+                z-index: 10000;
+              }
+
+              .validation-summary-errors {
+                color: red;
+                font-weight: bold;
+              }
+            </style>
+            <script
+              type="text/javascript"
+              src="/Content/js/jquery.validate.min.js"
+            ></script>
+            <script language="javascript" type="text/javascript">
+              function getDuplicateSerial() {
+                var jsd = "opattern=" + $("#DuplicatePattern").val();
+                $.ajax({
+                  type: "POST",
+                  url: "/EInvoice/GetSerialByPatter/",
+                  data: jsd,
+                  success: function (data) {
+                    sl = document.getElementById("DuplicateSerial");
+                    while (sl.firstChild) {
+                      sl.removeChild(sl.firstChild);
+                    }
+                    if (data.pu.length > 0) {
+                      for (i = 0; i < data.pu.length; i++) {
+                        newOption = new Option(data.pu[i]);
+                        document
+                          .getElementById("DuplicateSerial")
+                          .options.add(newOption);
+                      }
+                    }
+                  },
+                });
+              }
+              function closeModel() {
+                $("#DuplicateInvModalLong").modal("hide");
+              }
+              function CreateDuplicateInv() {
+                var _valid = $("#DuplicateInvForm").valid();
+                if (!_valid) {
+                  return false;
+                }
+                $.ajax({
+                  type: "POST",
+                  url: "/EInvoice/CreateDuplicateInv",
+                  data: $("#DuplicateInvForm").serialize(),
+                  success: function (data) {
+                    if (data.IsSuccess === true) {
+                      window.location.href = data.data.Url;
+                    } else if (data.IsSuccess === false) {
+                      $("#lblErrorMessageDuplicateInvoice").html(data.data);
+                    }
+                  },
+                  error: function (xhr, error) {
+                    alert(xhr.responseText);
+                  },
+                });
+                return false;
+              } // xử lý chọn ngày tháng datetime
+              function getDuplicateArisingDateValue() {
+                var stringDate1 = $("#DuplicateArisingDate").val();
+                var d1 = Date.parseExact(stringDate1, "d/M/yyyy");
+                if (d1 == null && stringDate1 != null) {
+                  // nhập không đúng định dạng ngày tháng
+                  $("#DuplicateArisingDate").val("");
+                }
+              }
+            </script>
+          </section>
+          <!-- /.content -->
+          <div
+            id="dialogCheckEx"
+            title="Thông báo"
+            style="border: double black; background-color: white; display: none"
+          >
+            <p style="color: black; font-size: 15px; margin: 15px">
+              Chưa cài đặt plugin ký số. Ấn OK để download bản cài đặt!
+            </p>
+            <input
+              type="button"
+              value="OK"
+              style="margin-left: 43%"
+              onclick="clickBt();"
+            />
+          </div>
+        </div>
+        <!-- /.container -->
+      </div>
+      <div id="messagewrapper" style="display: none"></div>
+      <script src="/Content/js/FXUtils.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          // Display messages on page load if the #messagewrapper has content
+          if ($("#messagewrapper").children().length > 0) {
+            displayMessages();
+          }
+        });
+      </script>
+
+      <footer class="main-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10">
+              <address>
+                © Công ty Công nghệ thông tin VNPT (VNPT IT)
+                <br />
+                Địa chỉ: 57 Huỳnh Thúc Kháng - Đống Đa - Hà Nội
+              </address>
+            </div>
+            <div class="col-md-2">
+              <img src="/Content/Images/logo-copy.png" />
+            </div>
+          </div>
+        </div>
+
+        <!-- /.container -->
+      </footer>
+      <div
+        id="loading"
+        class="loading"
+        style="
+          background-color: rgb(221, 221, 221);
+          height: 100%;
+          width: 100%;
+          position: fixed;
+          z-index: 99999;
+          margin-top: 0px;
+          top: 0px;
+          opacity: 0.7;
+          display: none;
+        "
+      >
+        <div class="loader"></div>
+      </div>
+      <div
+        id="modalUsedCertificates"
+        class="modal fade in"
+        role="dialog"
+        data-backdrop="static"
+        data-keyboard="false"
+      >
+        <div
+          class="modal-dialog modal-lg"
+          id="modal_dialog_UsedCertificates"
+        ></div>
+      </div>
+
+      <input
+        type="hidden"
+        id="LicenseKeyPlugin"
+        name="LicenseKeyPlugin"
+        value="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PExpY2Vuc2U+PFBoYW5NZW0+Vk5QVC1DQSBQbHVnaW48L1BoYW5NZW0+PE5ndW9pQ2FwPlZOUFQgU09GVFdBUkU8L05ndW9pQ2FwPjxEb25WaUR1b2NDYXA+dm5wdC1pbnZvaWNlLmNvbS52bixsb2NhbGhvc3Q8L0RvblZpRHVvY0NhcD48TmdheUJhdERhdT4wMDowMDowMDwvTmdheUJhdERhdT48TmdheUtldFRodWM+MDA6MDA6MDA8L05nYXlLZXRUaHVjPjxTaWduYXR1cmUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxTaWduZWRJbmZvPjxDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMteG1sLWMxNG4tMjAwMTAzMTUiIC8+PFNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNyc2Etc2hhMSIgLz48UmVmZXJlbmNlIFVSST0iIj48VHJhbnNmb3Jtcz48VHJhbnNmb3JtIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3BlZC1zaWduYXR1cmUiIC8+PC9UcmFuc2Zvcm1zPjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIgLz48RGlnZXN0VmFsdWU+RTUxWTFybkJ1WStTU3Z3NytsbjJ5eDhQZUwwPTwvRGlnZXN0VmFsdWU+PC9SZWZlcmVuY2U+PC9TaWduZWRJbmZvPjxTaWduYXR1cmVWYWx1ZT5NV0ZaS2RxQmJYL3k5UTNPLzNwa2ZvVVloYUVDK3A2ZktVblJzQnhQalhRQnlrSFl4VDkwbXJzMVY1NXIwS2JGaVg0Q0RkNy9CWjJrUmU0bTk5WGRYcDVNY1dkam9ONUR6elNydWxsRURXM01yRGVJV2pTcVpBNDlLTE9wYWk5VDRETHM0NnpkNjYrejd4aFdnY0JtWVBZRVZOZExFVit2aCs3c3NvcGZkUHR1R2hjMVZscWVKbERlTXFiL3c5UWZJL0tIRGZsT083enpuRG0yZHZzSDAzanl0UE0zTWxmUWJuN3FyKzcrWHhYZkFDUlJ1SThYekZoQ1JGendMalY3YUI1MFNaU3JUNVNoMHVQYmdCMVYyY1NrcDNtNmdoYllBUDcreXFydkpvb0EvZGlmK0pIdXIwQ1NTdzI4NnhtYUpMTVBMS0R0bWh4VHVqYURNSmFBanc9PTwvU2lnbmF0dXJlVmFsdWU+PEtleUluZm8+PEtleVZhbHVlPjxSU0FLZXlWYWx1ZT48TW9kdWx1cz5wMjhjVVRub1hHOVVvNzU0cGp3ZFpHSDhtWDRWWlFrQXlrb3Foc0FwdmdZUHlVUUVrQkU2ZDlxc1pMMzZHdjFqRloxdktob25JNmZMRXhWcmJIRG05K0RlS2V6VklacVF2TGlzNjNnM2hybXpSdCtjL29BemE2T1JxZUJWVm1QaENYT3cvSkRyd3hIM0NMWnJsUjFYR3htc3Fsamk3K1ZNMHBDL0NJa2lnLzV0RnUvUEN1VGNUWS9OZi95Zm1NVDk3Tml5OU5uRk5YNWNRcURFWTVsU0NEb295MGhwU0NuY1lRc3VMY1FKQWZZenZ6dzlvb09qRmpZT1V2bWNlbURDMS8wRUU5ZGJXbFdldGZuVk5iOHN6b3FzTEJyTEFEQjFDaFNmbmw5b1FGekdRVmEwUmlKOXhPd1BvSjI1alFkVmltRTE4dlRNWldadG1HTlMycisrT1E9PTwvTW9kdWx1cz48RXhwb25lbnQ+QVFBQjwvRXhwb25lbnQ+PC9SU0FLZXlWYWx1ZT48L0tleVZhbHVlPjxYNTA5RGF0YT48WDUwOUNlcnRpZmljYXRlPk1JSUdSVENDQkMyZ0F3SUJBZ0lRVkFFa2ozeVhSRUk3d0s3S1IvY0hzakFOQmdrcWhraUc5dzBCQVFVRkFEQnBNUXN3Q1FZRFZRUUdFd0pXVGpFVE1CRUdBMVVFQ2hNS1ZrNVFWQ0JIY205MWNERWVNQndHQTFVRUN4TVZWazVRVkMxRFFTQlVjblZ6ZENCT1pYUjNiM0pyTVNVd0l3WURWUVFERXh4V1RsQlVJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEUzTURJeU56QTVNekl3TUZvWERURTVNREl5TnpJeE16SXdNRm93Z1lveEN6QUpCZ05WQkFZVEFsWk9NUkl3RUFZRFZRUUlEQWxJdzRBZ1R1RzdtRWt4RlRBVEJnTlZCQWNNREVQaHVxZDFJRWRwNGJxbGVURXNNQ29HQTFVRUF3d2pWazVRVkNCVFQwWlVWMEZTUlNBdElGWk9VRlFnUTBFZ0xTQlVSVk5VSUZOSlIwNHhJakFnQmdvSmtpYUprL0lzWkFFQkRCSk5VMVE2TVRBeE5qZzJPVGN6T0Mwd01USXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDbmJ4eFJPZWhjYjFTanZuaW1QQjFrWWZ5WmZoVmxDUURLU2lxR3dDbStCZy9KUkFTUUVUcDMycXhrdmZvYS9XTVZuVzhxR2ljanA4c1RGV3RzY09iMzRONHA3TlVobXBDOHVLenJlRGVHdWJORzM1eitnRE5ybzVHcDRGVldZK0VKYzdEOGtPdkRFZmNJdG11VkhWY2JHYXlxV09MdjVVelNrTDhJaVNLRC9tMFc3ODhLNU54Tmo4MS8vSitZeFAzczJMTDAyY1UxZmx4Q29NUmptVklJT2lqTFNHbElLZHhoQ3k0dHhBa0I5ak8vUEQyaWc2TVdOZzVTK1p4NllNTFgvUVFUMTF0YVZaNjErZFUxdnl6T2lxd3NHc3NBTUhVS0ZKK2VYMmhBWE1aQlZyUkdJbjNFN0ErZ25ibU5CMVdLWVRYeTlNeGxabTJZWTFMYXY3NDVBZ01CQUFHamdnSEZNSUlCd1RCd0JnZ3JCZ0VGQlFjQkFRUmtNR0l3TWdZSUt3WUJCUVVITUFLR0ptaDBkSEE2THk5d2RXSXVkbTV3ZEMxallTNTJiaTlqWlhKMGN5OTJibkIwWTJFdVkyVnlNQ3dHQ0NzR0FRVUZCekFCaGlCb2RIUndPaTh2YjJOemNDNTJibkIwTFdOaExuWnVMM0psYzNCdmJtUmxjakFkQmdOVkhRNEVGZ1FVYkg0aHRGc09iTEQxazBOb0NYanlGVHZaQ1Fzd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JRR2FjRFYxUUtLRlkxR2ZlbDg0bWdLVmF4cXJ6Qm9CZ05WSFNBRVlUQmZNRjBHRGlzR0FRUUJnZTBEQVFFREFRRUNNRXN3SWdZSUt3WUJCUVVIQWdJd0ZoNFVBRThBU1FCRUFDMEFVQUJ5QUMwQU1nQXVBREF3SlFZSUt3WUJCUVVIQWdFV0dXaDBkSEE2THk5d2RXSXVkbTV3ZEMxallTNTJiaTl5Y0dFd01RWURWUjBmQkNvd0tEQW1vQ1NnSW9ZZ2FIUjBjRG92TDJOeWJDNTJibkIwTFdOaExuWnVMM1p1Y0hSallTNWpjbXd3RGdZRFZSMFBBUUgvQkFRREFnVHdNRFFHQTFVZEpRUXRNQ3NHQ0NzR0FRVUZCd01DQmdnckJnRUZCUWNEQkFZS0t3WUJCQUdDTndvRERBWUpLb1pJaHZjdkFRRUZNQndHQTFVZEVRUVZNQk9CRVRGamFIVmpkWFZBWjIxaGFXd3VZMjl0TUEwR0NTcUdTSWIzRFFFQkJRVUFBNElDQVFBeXFpSlB2dmtDTU1GM0JCaVBaM0duZWhud3ZodG1EUkpqWlJSTm1iNTIyTHc4eVNxSXBvNTdnWElTbkxlM3FXeUMwR0NXYVZzL1dKNlRKZzNmQjFHYUhwMnVKRzhoR1YwZzVNSm5nZ0FrV0lISGJraGt5WGxLZC94eHZGN2xDV3NsaDdPTG8vRHdKelBjQVFLZERtb3NETGtMdXRsamlyS2dQMTE4WG1UcEplOWNuaFRHV3htUjQzUlhvMXBLNk1aSlMvMzVBMGFFY1VGd2xreU9KcEZ1eitHcmpxMnFLMllzVHB2TkludzNMWkR3UmtrWWpobUpPRStmdWtxZnA4V0ZjQnRFR3FXRGFCYm1xZ1p2Y2l0OXMrUm9pM1dlT014VUtyaTBmU0FLRGN1eG5mNHJ4aWZRMEJiYXM5SFVtTm02NVZFc20rZjVCMHZkU202UzdYOFpvNTR1UXRSZy9IZDFhQ1B5MEFGZGZhSGkrNmFkcXIyWnEzcHRNSVMxMDdsQ2RxMjZLeU4zUk14WXZoNU5ac2c4OEpjOUlObEd4TDU4V0Q5RUI3TXpGa1dtbkdiOUpjMXVrQUVhUFpBOXZ3WldaVUF0cFdPSWRUeE5tVXZzWmRsVkE5dkRjL1RuSlJiVWswYUN3dnFWV01halBQb3p0OC9DdnpIcXdjT3Vna0Z1YzcrOE05UkZpK1J0WlhBK2tyVE5nblRLSlJIZDE2M2RXc3kzZnB5RlU5UEFjeWt5VEtxRmZpbEZqTmlHODdYME1acnA0bExSY1N1RmtnSFk2ci9pSWtMdkZNNkRJclRKU3hEUDNiWG85akZsOVFPYWJTTmZvUHhLbTQxdTVHcXBlSlhqbE5OQURJK0dOdFdRNmczWjJtdVlXcFM1NE5VZEpOcnlHUHlMeEE9PTwvWDUwOUNlcnRpZmljYXRlPjwvWDUwOURhdGE+PC9LZXlJbmZvPjxPYmplY3Q+PFNpZ25hdHVyZVByb3BlcnRpZXMgeG1sbnM9IiI+PFNpZ25hdHVyZVByb3BlcnR5IElkPSJTaWduaW5nVGltZSIgVGFyZ2V0PSJzaWduYXR1cmVQcm9wZXJ0aWVzIj48U2lnbmluZ1RpbWU+MjAxNy0xMS0wN1QwMjoxOTozOVo8L1NpZ25pbmdUaW1lPjwvU2lnbmF0dXJlUHJvcGVydHk+PC9TaWduYXR1cmVQcm9wZXJ0aWVzPjwvT2JqZWN0PjwvU2lnbmF0dXJlPjwvTGljZW5zZT4="
+      />
+    </div>
+
+    <script src="/bundles/bootstrap?v=QtxRrbVxHAK-b5ZowWqv6Wt7oUOJAggG80vl1X-EGBM1"></script>
+
+    <script src="/Content/js/jquery-confirm.min.js"></script>
+  </body>
+</html>
+<script>
+  function create_UUID() {
+    var sender = localStorage.getItem("sb_sender_name");
+    var uuid = "";
+    var dt = new Date().getTime();
+    if (sender) {
+      uuid = sender;
+    } else {
+      uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          var r = (dt + Math.random() * 16) % 16 | 0;
+          dt = Math.floor(dt / 16);
+          return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
+      try {
+        localStorage.setItem("sb_sender_name", uuid);
+      } catch (err) {
+        console.log("error", err);
+      }
+    }
+    return uuid;
+  }
+  let __protocol = document.location.protocol;
+  let __baseUrl = __protocol + "//livechat.vnpt.vn";
+  let prefixNameLiveChat = "";
+  let objPreDefineLiveChat = {
+      appCode: "5a6b79e0-5e7d-11ee-98c9-a368bb5337bd",
+      themes: "",
+      appName: {
+        line1: "VNPT INVOICE Supporter",
+        line2: "",
+      },
+      thumb: "",
+      icon_bot: "https://livechat.vnpt.vn/Chatbot.svg",
+      senderName: create_UUID(),
+      styles: {
+        head: {
+          bgColor: "#53c088",
+          text: {
+            line: 1,
+            line1: {
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: 700,
+            },
+            line2: {
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: 700,
+            },
+          },
+        },
+        border: {},
+        floatButton: {
+          bgColor: "#53c088",
+          width: "62px",
+          height: "62px",
+          img: {
+            height: "42px",
+            width: "42px",
+          },
+        },
+        chat: {
+          reply: {
+            bg: "#EEEEEE",
+          },
+          answer: {
+            bg: "#0782e0",
+          },
+          botIcon: "https://i.ibb.co/ZJgtPhr/Chatbot.png",
+        },
+      },
+    },
+    appCodeHash = window.location.hash.substr(1);
+  if (appCodeHash.length == 32) {
+    objPreDefineLiveChat.appCode = +appCodeHash;
+  }
+  let vnpt_ai_livechat_script = document.createElement("script");
+  vnpt_ai_livechat_script.id = "vnpt_ai_livechat_script";
+  vnpt_ai_livechat_script.src = __baseUrl + "/vnpt_smartbot.js";
+  document.body.appendChild(vnpt_ai_livechat_script);
+  let vnpt_ai_livechat_stylesheet = document.createElement("link");
+  vnpt_ai_livechat_stylesheet.id = "vnpt_ai_livechat_script";
+  vnpt_ai_livechat_stylesheet.rel = "stylesheet";
+  vnpt_ai_livechat_stylesheet.href = __baseUrl + "/vnpt_smartbot.css";
+  document.body.appendChild(vnpt_ai_livechat_stylesheet);
+  vnpt_ai_livechat_script.onload = function () {
+    vnpt_ai_render_chatbox(
+      objPreDefineLiveChat,
+      __baseUrl,
+      "livechat.vnpt.ai:443"
+    );
+  };
+</script>
+<script type="text/javascript">
+  //var keyPluginv2 = "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PExpY2Vuc2U+PFBoYW5NZW0+Vk5QVC1DQSBQbHVnaW48L1BoYW5NZW0+PE5ndW9pQ2FwPlZOUFQgU09GVFdBUkU8L05ndW9pQ2FwPjxEb25WaUR1b2NDYXA+dm5wdC1pbnZvaWNlLmNvbS52bixsb2NhbGhvc3Q8L0RvblZpRHVvY0NhcD48TmdheUJhdERhdT4wMDowMDowMDwvTmdheUJhdERhdT48TmdheUtldFRodWM+MDA6MDA6MDA8L05nYXlLZXRUaHVjPjxTaWduYXR1cmUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxTaWduZWRJbmZvPjxDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMteG1sLWMxNG4tMjAwMTAzMTUiIC8+PFNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNyc2Etc2hhMSIgLz48UmVmZXJlbmNlIFVSST0iIj48VHJhbnNmb3Jtcz48VHJhbnNmb3JtIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3BlZC1zaWduYXR1cmUiIC8+PC9UcmFuc2Zvcm1zPjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjc2hhMSIgLz48RGlnZXN0VmFsdWU+RTUxWTFybkJ1WStTU3Z3NytsbjJ5eDhQZUwwPTwvRGlnZXN0VmFsdWU+PC9SZWZlcmVuY2U+PC9TaWduZWRJbmZvPjxTaWduYXR1cmVWYWx1ZT5NV0ZaS2RxQmJYL3k5UTNPLzNwa2ZvVVloYUVDK3A2ZktVblJzQnhQalhRQnlrSFl4VDkwbXJzMVY1NXIwS2JGaVg0Q0RkNy9CWjJrUmU0bTk5WGRYcDVNY1dkam9ONUR6elNydWxsRURXM01yRGVJV2pTcVpBNDlLTE9wYWk5VDRETHM0NnpkNjYrejd4aFdnY0JtWVBZRVZOZExFVit2aCs3c3NvcGZkUHR1R2hjMVZscWVKbERlTXFiL3c5UWZJL0tIRGZsT083enpuRG0yZHZzSDAzanl0UE0zTWxmUWJuN3FyKzcrWHhYZkFDUlJ1SThYekZoQ1JGendMalY3YUI1MFNaU3JUNVNoMHVQYmdCMVYyY1NrcDNtNmdoYllBUDcreXFydkpvb0EvZGlmK0pIdXIwQ1NTdzI4NnhtYUpMTVBMS0R0bWh4VHVqYURNSmFBanc9PTwvU2lnbmF0dXJlVmFsdWU+PEtleUluZm8+PEtleVZhbHVlPjxSU0FLZXlWYWx1ZT48TW9kdWx1cz5wMjhjVVRub1hHOVVvNzU0cGp3ZFpHSDhtWDRWWlFrQXlrb3Foc0FwdmdZUHlVUUVrQkU2ZDlxc1pMMzZHdjFqRloxdktob25JNmZMRXhWcmJIRG05K0RlS2V6VklacVF2TGlzNjNnM2hybXpSdCtjL29BemE2T1JxZUJWVm1QaENYT3cvSkRyd3hIM0NMWnJsUjFYR3htc3Fsamk3K1ZNMHBDL0NJa2lnLzV0RnUvUEN1VGNUWS9OZi95Zm1NVDk3Tml5OU5uRk5YNWNRcURFWTVsU0NEb295MGhwU0NuY1lRc3VMY1FKQWZZenZ6dzlvb09qRmpZT1V2bWNlbURDMS8wRUU5ZGJXbFdldGZuVk5iOHN6b3FzTEJyTEFEQjFDaFNmbmw5b1FGekdRVmEwUmlKOXhPd1BvSjI1alFkVmltRTE4dlRNWldadG1HTlMycisrT1E9PTwvTW9kdWx1cz48RXhwb25lbnQ+QVFBQjwvRXhwb25lbnQ+PC9SU0FLZXlWYWx1ZT48L0tleVZhbHVlPjxYNTA5RGF0YT48WDUwOUNlcnRpZmljYXRlPk1JSUdSVENDQkMyZ0F3SUJBZ0lRVkFFa2ozeVhSRUk3d0s3S1IvY0hzakFOQmdrcWhraUc5dzBCQVFVRkFEQnBNUXN3Q1FZRFZRUUdFd0pXVGpFVE1CRUdBMVVFQ2hNS1ZrNVFWQ0JIY205MWNERWVNQndHQTFVRUN4TVZWazVRVkMxRFFTQlVjblZ6ZENCT1pYUjNiM0pyTVNVd0l3WURWUVFERXh4V1RsQlVJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEUzTURJeU56QTVNekl3TUZvWERURTVNREl5TnpJeE16SXdNRm93Z1lveEN6QUpCZ05WQkFZVEFsWk9NUkl3RUFZRFZRUUlEQWxJdzRBZ1R1RzdtRWt4RlRBVEJnTlZCQWNNREVQaHVxZDFJRWRwNGJxbGVURXNNQ29HQTFVRUF3d2pWazVRVkNCVFQwWlVWMEZTUlNBdElGWk9VRlFnUTBFZ0xTQlVSVk5VSUZOSlIwNHhJakFnQmdvSmtpYUprL0lzWkFFQkRCSk5VMVE2TVRBeE5qZzJPVGN6T0Mwd01USXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDbmJ4eFJPZWhjYjFTanZuaW1QQjFrWWZ5WmZoVmxDUURLU2lxR3dDbStCZy9KUkFTUUVUcDMycXhrdmZvYS9XTVZuVzhxR2ljanA4c1RGV3RzY09iMzRONHA3TlVobXBDOHVLenJlRGVHdWJORzM1eitnRE5ybzVHcDRGVldZK0VKYzdEOGtPdkRFZmNJdG11VkhWY2JHYXlxV09MdjVVelNrTDhJaVNLRC9tMFc3ODhLNU54Tmo4MS8vSitZeFAzczJMTDAyY1UxZmx4Q29NUmptVklJT2lqTFNHbElLZHhoQ3k0dHhBa0I5ak8vUEQyaWc2TVdOZzVTK1p4NllNTFgvUVFUMTF0YVZaNjErZFUxdnl6T2lxd3NHc3NBTUhVS0ZKK2VYMmhBWE1aQlZyUkdJbjNFN0ErZ25ibU5CMVdLWVRYeTlNeGxabTJZWTFMYXY3NDVBZ01CQUFHamdnSEZNSUlCd1RCd0JnZ3JCZ0VGQlFjQkFRUmtNR0l3TWdZSUt3WUJCUVVITUFLR0ptaDBkSEE2THk5d2RXSXVkbTV3ZEMxallTNTJiaTlqWlhKMGN5OTJibkIwWTJFdVkyVnlNQ3dHQ0NzR0FRVUZCekFCaGlCb2RIUndPaTh2YjJOemNDNTJibkIwTFdOaExuWnVMM0psYzNCdmJtUmxjakFkQmdOVkhRNEVGZ1FVYkg0aHRGc09iTEQxazBOb0NYanlGVHZaQ1Fzd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JRR2FjRFYxUUtLRlkxR2ZlbDg0bWdLVmF4cXJ6Qm9CZ05WSFNBRVlUQmZNRjBHRGlzR0FRUUJnZTBEQVFFREFRRUNNRXN3SWdZSUt3WUJCUVVIQWdJd0ZoNFVBRThBU1FCRUFDMEFVQUJ5QUMwQU1nQXVBREF3SlFZSUt3WUJCUVVIQWdFV0dXaDBkSEE2THk5d2RXSXVkbTV3ZEMxallTNTJiaTl5Y0dFd01RWURWUjBmQkNvd0tEQW1vQ1NnSW9ZZ2FIUjBjRG92TDJOeWJDNTJibkIwTFdOaExuWnVMM1p1Y0hSallTNWpjbXd3RGdZRFZSMFBBUUgvQkFRREFnVHdNRFFHQTFVZEpRUXRNQ3NHQ0NzR0FRVUZCd01DQmdnckJnRUZCUWNEQkFZS0t3WUJCQUdDTndvRERBWUpLb1pJaHZjdkFRRUZNQndHQTFVZEVRUVZNQk9CRVRGamFIVmpkWFZBWjIxaGFXd3VZMjl0TUEwR0NTcUdTSWIzRFFFQkJRVUFBNElDQVFBeXFpSlB2dmtDTU1GM0JCaVBaM0duZWhud3ZodG1EUkpqWlJSTm1iNTIyTHc4eVNxSXBvNTdnWElTbkxlM3FXeUMwR0NXYVZzL1dKNlRKZzNmQjFHYUhwMnVKRzhoR1YwZzVNSm5nZ0FrV0lISGJraGt5WGxLZC94eHZGN2xDV3NsaDdPTG8vRHdKelBjQVFLZERtb3NETGtMdXRsamlyS2dQMTE4WG1UcEplOWNuaFRHV3htUjQzUlhvMXBLNk1aSlMvMzVBMGFFY1VGd2xreU9KcEZ1eitHcmpxMnFLMllzVHB2TkludzNMWkR3UmtrWWpobUpPRStmdWtxZnA4V0ZjQnRFR3FXRGFCYm1xZ1p2Y2l0OXMrUm9pM1dlT014VUtyaTBmU0FLRGN1eG5mNHJ4aWZRMEJiYXM5SFVtTm02NVZFc20rZjVCMHZkU202UzdYOFpvNTR1UXRSZy9IZDFhQ1B5MEFGZGZhSGkrNmFkcXIyWnEzcHRNSVMxMDdsQ2RxMjZLeU4zUk14WXZoNU5ac2c4OEpjOUlObEd4TDU4V0Q5RUI3TXpGa1dtbkdiOUpjMXVrQUVhUFpBOXZ3WldaVUF0cFdPSWRUeE5tVXZzWmRsVkE5dkRjL1RuSlJiVWswYUN3dnFWV01halBQb3p0OC9DdnpIcXdjT3Vna0Z1YzcrOE05UkZpK1J0WlhBK2tyVE5nblRLSlJIZDE2M2RXc3kzZnB5RlU5UEFjeWt5VEtxRmZpbEZqTmlHODdYME1acnA0bExSY1N1RmtnSFk2ci9pSWtMdkZNNkRJclRKU3hEUDNiWG85akZsOVFPYWJTTmZvUHhLbTQxdTVHcXBlSlhqbE5OQURJK0dOdFdRNmczWjJtdVlXcFM1NE5VZEpOcnlHUHlMeEE9PTwvWDUwOUNlcnRpZmljYXRlPjwvWDUwOURhdGE+PC9LZXlJbmZvPjxPYmplY3Q+PFNpZ25hdHVyZVByb3BlcnRpZXMgeG1sbnM9IiI+PFNpZ25hdHVyZVByb3BlcnR5IElkPSJTaWduaW5nVGltZSIgVGFyZ2V0PSJzaWduYXR1cmVQcm9wZXJ0aWVzIj48U2lnbmluZ1RpbWU+MjAxNy0xMS0wN1QwMjoxOTozOVo8L1NpZ25pbmdUaW1lPjwvU2lnbmF0dXJlUHJvcGVydHk+PC9TaWduYXR1cmVQcm9wZXJ0aWVzPjwvT2JqZWN0PjwvU2lnbmF0dXJlPjwvTGljZW5zZT4=";
+  var keyPluginv2 = $("#LicenseKeyPlugin").val();
+  function clickBt() {
+    window.open(
+      "https://clienttool-cadmin.vnpt-invoice.com.vn/Plugins/VNPT-EINVOICE-1202v2.zip",
+      "_blank"
+    );
+    $("#dialogCheckEx").hide();
+  }
+  function ShowLoading() {
+    $("#loading").show();
+  }
+  function HideLoading() {
+    $("#loading").hide();
+  }
+  function getLanguage() {
+    $.ajax({
+      type: "GET",
+      url: "/Home/GetLanguage",
+      success: function (res) {
+        localStorage.setItem("VNPT_localization", res.language);
+      },
+      error: function (res) {
+        localStorage.removeItem("VNPT_localization");
+      },
+    });
+  }
+  function changeLanguage(culture) {
+    var jsondata = { culture: culture };
+    $.ajax({
+      type: "POST",
+      url: "/Home/ChangeLanguage/",
+      data: jsondata,
+      success: function (res) {
+        if (res.success) {
+          window.location.reload();
+          localStorage.setItem("VNPT_localization", culture);
+        } else {
+          localStorage.removeItem("VNPT_localization");
+        }
+      },
+      error: function (res) {
+        localStorage.removeItem("VNPT_localization");
+      },
+    });
+  }
+  function checkTextMaxLength(textBox) {
+    var utf8codeUnits = 0;
+    var cChar = 0;
+    var mLen = textBox.getAttribute("maxlength");
+    if (mLen == null || mLen == undefined) {
+      textBox.value = textBox.value;
+    } else {
+      //var str = "";
+      var maxLength = parseInt(mLen);
+      while (utf8codeUnits < maxLength) {
+        //if (maxLength > textBox.value.length)
+        //    break;
+        var c = textBox.value.charCodeAt(cChar);
+        //str += textBox.value[cChar];
+        if (c < 128) {
+          utf8codeUnits++;
+        } else if (c > 127 && c < 2048) {
+          utf8codeUnits = utf8codeUnits + 2;
+        } else {
+          utf8codeUnits = utf8codeUnits + 3;
+        }
+        if (utf8codeUnits <= maxLength) {
+          cChar++;
+        }
+      }
+      //textBox.value = textBox.value.substring(0, cChar);
+      textBox.value = textBox.value;
+    }
+  }
+  $(document).ready(function () {
+    getLanguage();
+    $("input[type='text']").blur(function () {
+      var val = $(this).val();
+      if (val && val.length > 0) $(this).val(val.trim());
+      checkTextMaxLength(this);
+    });
+    $("textarea").blur(function () {
+      var val = $(this).val();
+      if (val && val.length > 0) $(this).val(val.trim());
+
+      checkTextMaxLength(this);
+    });
+    //Bỏ enter submit form
+    $(document).on("keypress", "form button", function (e) {
+      var code = e.keyCode || e.which;
+      if (code == 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    $("textarea").keypress(function (event) {
+      if (event.which == 13) {
+        event.preventDefault();
+        var s = $(this).val();
+        $(this).val(s + "\n");
+      }
+    });
+
+    $(".onlynum").keypress(function (event) {
+      var keypressed = null;
+      if (window.event) {
+        keypressed = window.event.keyCode;
+        if (keypressed < 48 || keypressed > 57) {
+          return false;
+        }
+      } else {
+        keypressed = e.which;
+        if (keypressed < 48 || keypressed > 57) {
+          if (e.charCode == 0) {
+            return;
+          }
+          return false;
+        }
+      }
+    });
+    $(".textandnum").keypress(function (event) {
+      var idName = $(this).attr("id");
+      if (
+        idName != null &&
+        idName != undefined &&
+        (idName == "Code" || idName == "tmpCustomer_Code")
+      ) {
+        var keypressed = null;
+        if (window.event) {
+          //IE
+          keypressed = window.event.keyCode;
+          if (
+            keypressed < 33 ||
+            keypressed == 47 ||
+            (keypressed > 57 && keypressed < 64) ||
+            (keypressed > 90 && keypressed < 97) ||
+            (keypressed > 122 && keypressed != 189)
+          ) {
+            return false;
+          }
+        } else {
+          keypressed = e.which; //NON-IE, Standard
+          if (
+            keypressed < 33 ||
+            keypressed == 47 ||
+            (keypressed > 57 && keypressed < 64) ||
+            (keypressed > 90 && keypressed < 97) ||
+            (keypressed > 122 && keypressed != 189)
+          ) {
+            if (e.charCode == 0) {
+              // không phải kí tự thì vẫn ok
+              return;
+            }
+            return false;
+          }
+        }
+      } else {
+        var keypressed = null;
+        if (window.event) {
+          keypressed = window.event.keyCode;
+          if (
+            keypressed < 48 ||
+            (keypressed > 57 && keypressed < 65) ||
+            (keypressed > 90 && keypressed < 97) ||
+            keypressed > 122
+          ) {
+            return false;
+          }
+        } else {
+          keypressed = e.which;
+          if (
+            keypressed < 48 ||
+            (keypressed > 57 && keypressed < 65) ||
+            (keypressed > 90 && keypressed < 97) ||
+            keypressed > 122
+          ) {
+            if (e.charCode == 0) {
+              return;
+            }
+            return false;
+          }
+        }
+      }
+    });
+  });
+  //$('.dropdown').hover(
+  //   function () {
+  //      $(this).find('.dropdown-menu').stop(true, true).delay(1).fadeIn();
+  //   },
+  //   function () {
+  //      $(this).find('.dropdown-menu').stop(true, true).delay(1).fadeOut();
+  //   }
+  //);
+
+  //$('.dropdown-menu').hover(
+  //   function () {
+  //      $(this).stop(true, true);
+  //   },
+  //   function () {
+  //      $(this).stop(true, true).delay(1).fadeOut();
+  //   }
+  //);
+  $(document).on("keypress", ".datepicker", function (e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+      e.preventDefault();
+      return false;
+    }
+  });
+</script>
+<script src="/Content/js/main.js"></script>
+<script src="/Content/js/vnpt-plugin.js"></script>
+<script src="/Content/js/BrowserDetectShare.js"></script>

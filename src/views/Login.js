@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchToken } from "../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUser] = useState("");
   const [password, setPass] = useState("");
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
+  const navigate = useNavigate();
+  useEffect(() => {
+    document.title = "Login Page";
+  }, []);
+  const token = useSelector((state) => state.auth.token) || null;
+  const isError = useSelector((state) => state.auth.isError) || false;
+  console.log(token);
   const handleLogin = () => {
     var user = {
       username: username,
@@ -13,6 +20,13 @@ function Login() {
     };
     console.log(user);
     dispatch(fetchToken(user));
+    console.log(isError);
+    if (isError) {
+      alert("Đăng nhập lỗi");
+    }
+    if (!token) {
+      navigate("/");
+    }
   };
 
   const handleOnchangeUsername = (event) => {
@@ -22,7 +36,7 @@ function Login() {
     setPass(event.target.value);
   };
   return (
-    <div>
+    <form>
       <div>
         <label>Tài khoản</label>
         <input
@@ -46,7 +60,7 @@ function Login() {
       <div>
         <label>{token}</label>
       </div>
-    </div>
+    </form>
   );
 }
 
